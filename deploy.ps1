@@ -45,10 +45,14 @@ if ($LASTEXITCODE -eq 0) {
     Write-Host "  → 没有新更改，继续推送" -ForegroundColor Yellow
 }
 
-# 4) 推送到 GitHub
+# 4) 拉取远端更改 + 推送到 GitHub
 Write-Host ""
 Write-Host "步骤 3/3: 推送到 GitHub..." -ForegroundColor Green
 git branch -M main
+git pull --rebase origin main 2>$null
+if ($LASTEXITCODE -ne 0) {
+    Write-Host "  ⚠ 拉取时出现冲突，跳过拉取继续推送" -ForegroundColor Yellow
+}
 git push -u origin main
 if ($LASTEXITCODE -eq 0) {
     Write-Host "  ✓ 推送成功！" -ForegroundColor Green
