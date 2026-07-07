@@ -1,0 +1,123 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>吴楠 · 个人主页</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:"PingFang SC","Microsoft YaHei","Helvetica Neue",Arial,sans-serif;background:#0a0a0f;color:#e0e0e0;line-height:1.7;overflow-x:hidden}
+a{color:#c49b5c;text-decoration:none;transition:color .3s}
+a:hover{color:#e8c97a}
+img{max-width:100%;display:block}
+::selection{background:#c49b5c33;color:#f0e6d0}
+.container{max-width:1100px;margin:0 auto;padding:0 24px}
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;background:linear-gradient(135deg,#0d0d14 0%,#1a1625 40%,#0d0d14 100%);position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 50%,rgba(196,155,92,.08) 0%,transparent 60%),radial-gradient(ellipse at 70% 20%,rgba(100,60,180,.06) 0%,transparent 50%);pointer-events:none}
+.hero h1{font-size:clamp(3rem,8vw,6rem);font-weight:700;background:linear-gradient(135deg,#f0e6d0 0%,#c49b5c 50%,#f0e6d0 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:.06em;position:relative;z-index:1}
+.hero p{font-size:clamp(1rem,2vw,1.3rem);color:#999;margin-top:1rem;letter-spacing:.04em;position:relative;z-index:1}
+.hero .subtitle{display:flex;gap:2rem;flex-wrap:wrap;justify-content:center;margin-top:2rem;font-size:1rem;position:relative;z-index:1}
+.hero .subtitle span{color:#888;display:flex;align-items:center;gap:.5rem}
+.hero .subtitle span::before{content:"◆";color:#c49b5c;font-size:.6rem}
+.scroll-hint{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);color:#555;font-size:.85rem;letter-spacing:.2em;animation:fadeDown 2s ease-in-out infinite}
+@keyframes fadeDown{0%,100%{opacity:.3;transform:translateX(-50%) translateY(0)}50%{opacity:.8;transform:translateX(-50%) translateY(8px)}}
+section{padding:6rem 0}
+.section-title{font-size:2rem;font-weight:600;text-align:center;margin-bottom:3rem;color:#f0e6d0}
+.section-title::after{content:'';display:block;width:60px;height:2px;background:linear-gradient(90deg,transparent,#c49b5c,transparent);margin:.8rem auto 0}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start}
+@media(max-width:768px){.about-grid{grid-template-columns:1fr}}
+.about-card{background:#12121c;border-radius:12px;padding:2rem;border:1px solid #1e1e2e;transition:border-color .3s,transform .3s}
+.about-card:hover{border-color:#c49b5c44;transform:translateY(-4px)}
+.about-card h3{font-size:1.1rem;color:#c49b5c;margin-bottom:1rem;display:flex;align-items:center;gap:.6rem}
+.about-card ul{list-style:none}
+.about-card ul li{padding:.5rem 0;border-bottom:1px solid #1a1a2a;display:flex;gap:.8rem}
+.about-card ul li:last-child{border-bottom:none}
+.about-card ul li .label{color:#888;min-width:5rem;flex-shrink:0}
+.about-card ul li .value{color:#ddd}
+.timeline{position:relative;padding-left:2rem}
+.timeline::before{content:'';position:absolute;left:0;top:0;bottom:0;width:1px;background:linear-gradient(180deg,transparent,#c49b5c,transparent)}
+.timeline-item{position:relative;padding-bottom:2.5rem}
+.timeline-item::before{content:'';position:absolute;left:-2.35rem;top:.5rem;width:10px;height:10px;border-radius:50%;background:#c49b5c;border:2px solid #0a0a0f}
+.timeline-item .year{font-size:.85rem;color:#c49b5c;font-weight:600;margin-bottom:.3rem}
+.timeline-item .desc{color:#aaa;font-size:.95rem}
+.heroes-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem}
+@media(max-width:768px){.heroes-grid{grid-template-columns:1fr}}
+.hero-card{background:#12121c;border-radius:12px;overflow:hidden;border:1px solid #1e1e2e;transition:border-color .3s,transform .3s;text-align:center}
+.hero-card:hover{border-color:#c49b5c55;transform:translateY(-6px)}
+.hero-card .img-wrap{width:100%;aspect-ratio:16/9;overflow:hidden}
+.hero-card .img-wrap img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
+.hero-card:hover .img-wrap img{transform:scale(1.06)}
+.hero-card .info{padding:1.2rem 1rem 1.5rem}
+.hero-card .info h4{font-size:1.1rem;color:#f0e6d0;margin-bottom:.3rem}
+.hero-card .info p{font-size:.85rem;color:#888}
+.food-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+@media(max-width:768px){.food-grid{grid-template-columns:1fr}}
+.food-card{background:#12121c;border-radius:12px;padding:2rem 1.5rem;border:1px solid #1e1e2e;text-align:center;transition:border-color .3s,transform .3s}
+.food-card:hover{border-color:#c49b5c44;transform:translateY(-4px)}
+.food-card .icon{font-size:2.5rem;margin-bottom:.8rem}
+.food-card h4{color:#f0e6d0;margin-bottom:.4rem}
+.food-card p{color:#888;font-size:.9rem}
+.quote-section{text-align:center;padding:5rem 0;background:linear-gradient(135deg,#0d0d14 0%,#14111f 100%)}
+.quote-section blockquote{font-size:1.3rem;font-style:italic;color:#c49b5c;max-width:600px;margin:0 auto}
+.quote-section cite{display:block;margin-top:1rem;color:#666;font-size:.9rem}
+footer{text-align:center;padding:2rem 0;color:#555;font-size:.85rem;border-top:1px solid #16161f}
+.dota-tag{display:inline-block;padding:.2rem .8rem;border:1px solid #c49b5c33;border-radius:20px;font-size:.8rem;color:#c49b5c}
+@media(max-width:768px){section{padding:3rem 0}.section-title{font-size:1.6rem;margin-bottom:2rem}.hero .subtitle{gap:1rem}.about-card{padding:1.5rem}.timeline{padding-left:1.5rem}.timeline-item::before{left:-1.85rem;width:8px;height:8px}.heroes-grid,.food-grid{gap:1.5rem}.hero-card .info{padding:1rem .8rem 1.2rem}.hero-card .info h4{font-size:1.05rem}.food-card{padding:1.5rem 1rem}.quote-section blockquote{font-size:1.1rem}.quote-section{padding:3rem 0}}
+@media(max-width:480px){.container{padding:0 16px}section{padding:2.5rem 0}.section-title{font-size:1.35rem;margin-bottom:1.5rem}.hero h1{font-size:clamp(2.2rem,15vw,3.5rem)}.hero p{font-size:.95rem;margin-top:.6rem}.hero .subtitle{gap:.5rem;margin-top:1.2rem;font-size:.85rem}.hero .subtitle span::before{display:none}.about-grid{gap:1.5rem}.about-card{padding:1.2rem}.about-card ul li{padding:.35rem 0;font-size:.88rem}.about-card ul li .label{min-width:4rem}.timeline-item{padding-bottom:1.5rem}.timeline-item .year{font-size:.78rem}.timeline-item .desc{font-size:.85rem}.heroes-grid,.food-grid{gap:1rem}.hero-card .img-wrap{aspect-ratio:4/3}.hero-card .info{padding:.8rem .6rem 1rem}.hero-card .info h4{font-size:.95rem}.hero-card .info p{font-size:.8rem}.food-card{padding:1.2rem .8rem}.food-card .icon{font-size:2rem}.food-card h4{font-size:.9rem}.food-card p{font-size:.82rem}.quote-section blockquote{font-size:.95rem}.quote-section cite{font-size:.82rem}}
+</style></head><body>
+<header class="hero" id="top"><h1>吴楠</h1>
+<p>湘江畔的 Dota 2 游廊老将 · 十年北漂归来的产品人</p>
+<div class="subtitle">
+<span>34 岁</span><span>湖南长沙</span><span>籍贯永州零陵</span><span>中央民族大学 10 级</span>
+</div><div class="scroll-hint">往下翻</div></header>
+<section id="about"><div class="container">
+<h2 class="section-title">关于我</h2><div class="about-grid">
+<div class="about-card"><h3>📋 基本信息</h3><ul>
+<li><span class="label">姓名</span><span class="value">吴楠</span></li>
+<li><span class="label">年龄</span><span class="value">34 岁</span></li>
+<li><span class="label">现居</span><span class="value">湖南长沙</span></li>
+<li><span class="label">籍贯</span><span class="value">湖南永州零陵</span></li>
+<li><span class="label">毕业</span><span class="value">中央民族大学 10 级本科</span></li>
+</ul></div>
+<div class="about-card"><h3>🎯 个人简介</h3>
+<p style="color:#aaa;font-size:.95rem;line-height:1.9;">从北京到长沙，从产品人到 Dota 2 游廊发烧友。十年北漂教会我坚韧，回到湘江边学会了生活。喜欢在福佑里跟兄弟们开黑，拿马尔斯冲脸、全能骑士保人、混沌骑士打后期。工作之外，热衷于探索长沙的美食地图，费大厨的辣椒炒肉、炊烟的黄牛肉、北方的烤饼，都是我的快乐源泉。</p>
+</div></div></div></section>
+<section id="story" style="background:#0d0d14;"><div class="container">
+<h2 class="section-title">我的轨迹</h2><div class="about-grid">
+<div class="about-card"><h3>📍 人生时间线</h3><div class="timeline">
+<div class="timeline-item"><div class="year">1992 · 湖南永州</div><div class="desc">出生于永州零陵，潇水河畔长大。</div></div>
+<div class="timeline-item"><div class="year">2010 · 北京</div><div class="desc">考入中央民族大学，开启北漂生涯。</div></div>
+<div class="timeline-item"><div class="year">2014 — 2021 · 北京</div><div class="desc">毕业后留在北京做产品经理，先后经历两家互联网公司，从菜鸟到独当一面。</div></div>
+<div class="timeline-item"><div class="year">2021 · 长沙</div><div class="desc">结束十年北漂，回到长沙定居，继续做产品，也学会了慢下来生活。</div></div>
+<div class="timeline-item"><div class="year">至今 · 长沙</div><div class="desc">工作之余泡在 Dota 2 游廊 —— "福佑" 就是我主场。</div></div>
+</div></div>
+<div class="about-card"><h3>🎮 关于福佑 &amp; Dota 2</h3>
+<p style="color:#aaa;font-size:.95rem;line-height:1.9;margin-bottom:1rem;">福佑是 Dota 2 游廊里我最钟情的自定义地图，融合了 RPG、防守和 PvP 的玩法，节奏紧凑，讲究团队配合。入坑之后就再也没出来 —— 跟我一起玩的朋友们都叫我 "零陵马尔斯王"。</p>
+<p><span class="dota-tag">天梯 4000+</span><span class="dota-tag" style="margin-left:.5rem;">福佑通关 200+</span><span class="dota-tag" style="margin-left:.5rem;">全能骑士绝活</span></p>
+</div></div></div></section>
+<section id="heroes"><div class="container">
+<h2 class="section-title">擅长英雄</h2>
+<p style="text-align:center;color:#666;margin-bottom:2.5rem;font-size:.9rem;">福佑模式下最爱的三个本命英雄</p>
+<div class="heroes-grid">
+<div class="hero-card"><div class="img-wrap"><img src="images/mars_hd.png" alt="马尔斯 / Mars" loading="lazy"></div>
+<div class="info"><h4>马尔斯 · Mars</h4><p>冲脸杀神 · 竞技场一开谁也拦不住</p></div></div>
+<div class="hero-card"><div class="img-wrap"><img src="images/omniknight_hd.png" alt="全能骑士 / Omniknight" loading="lazy"></div>
+<div class="info"><h4>全能骑士 · Omniknight</h4><p>团队之盾 · 一手大招逆转乾坤</p></div></div>
+<div class="hero-card"><div class="img-wrap"><img src="images/chaos_knight_hd.png" alt="混沌骑士 / Chaos Knight" loading="lazy"></div>
+<div class="info"><h4>混沌骑士 · Chaos Knight</h4><p>后期霸者 · 分身一开毁天灭地</p></div></div>
+</div></div></section>
+<section id="food" style="background:#0d0d14;"><div class="container">
+<h2 class="section-title">我的美食地图</h2>
+<p style="text-align:center;color:#666;margin-bottom:2.5rem;font-size:.9rem;">回到长沙，最大的幸福就是吃</p>
+<div class="food-grid">
+<div class="food-card"><div class="icon">🌶️</div><h4>费大厨辣椒炒肉</h4><p>长沙最对味的辣椒炒肉，每次去都能多干两碗饭。</p></div>
+<div class="food-card"><div class="icon">🥩</div><h4>炊烟小炒黄牛肉</h4><p>嫩滑带劲的黄牛肉，配上秘制剁椒，绝了。</p></div>
+<div class="food-card"><div class="icon">🫓</div><h4>北方烤饼</h4><p>北漂十年养成的胃，回长沙也戒不掉那口烤饼香。</p></div>
+</div></div></section>
+<section class="quote-section"><div class="container">
+<blockquote>"从零陵到北京，从北京回长沙，<br>十年不过是一场开了 BKB 的冲锋。<br>如今在湘江边，我学会了等技能 CD。"</blockquote>
+<cite>—— 吴楠 · 福佑 ID：零陵马尔斯王</cite>
+</div></section>
+<footer><div class="container">© 2026 吴楠 · Made with ❤️ in Changsha</div></footer>
+</body></html>

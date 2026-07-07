@@ -1,0 +1,7 @@
+node_modules/
+.DS_Store
+*.py
+server.js
+resize_images.py
+update_html.py
+download_hd.py
