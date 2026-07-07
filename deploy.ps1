@@ -42,6 +42,7 @@ if ($LASTEXITCODE -eq 0) {
 
 Write-Host ""
 Write-Host "步骤 3/3: 推送到 GitHub..." -ForegroundColor Green
+git branch -M main
 git push -u origin main
 if ($LASTEXITCODE -eq 0) {
     Write-Host "  ✓ 推送成功！" -ForegroundColor Green
@@ -54,3 +55,4 @@ Write-Host "你的个人主页将在几分钟后自动更新：" -ForegroundColo
 Write-Host "  https://sudo2016.github.io" -ForegroundColor White
 Write-Host ""
 Read-Host "按 Enter 键退出"
+
